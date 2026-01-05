@@ -6,12 +6,12 @@ type ProjectCardProps = {
     title: string;
     description: string;
     action: string;
-    content: string;
+    status: string;
     footer: string;
 }
 
 
-export  function ProjectCard({title, description, action, content, footer}: ProjectCardProps){
+export  function ProjectCard({title, description, action, status, footer}: ProjectCardProps){
 
 
     return (
@@ -23,7 +23,7 @@ export  function ProjectCard({title, description, action, content, footer}: Proj
           <CardAction> <Button>{action}</Button></CardAction>
         </CardHeader>
         <CardContent>
-          <p>{content}</p>
+          <p>{status}</p>
         </CardContent>
         <CardFooter>
           <p>{footer}</p>
