@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 
 type ProjectCardProps = {
@@ -20,7 +21,7 @@ export  function ProjectCard({title, description, action, status, footer}: Proje
         <CardHeader>
           <CardTitle>{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
-          <CardAction> <Button>{action}</Button></CardAction>
+          <CardAction> <Link href={`/projects/${action}`}><Button> Detalhes </Button></Link></CardAction>
         </CardHeader>
         <CardContent>
           <p>{status}</p>
