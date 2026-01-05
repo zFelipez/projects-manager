@@ -14,7 +14,7 @@ export default function Home() {
               key={item.id}
               title={item.title}
               description={item.description}
-              action={'Action'}
+              action={'Detalhes'}
               status={item.status}
               footer={item.updatedAt}
             />

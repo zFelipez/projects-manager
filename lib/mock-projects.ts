@@ -36,3 +36,9 @@ export const mockProjects: mockProjectProps[] = [
     updatedAt: "3 dias atrás",
   },
 ];
+
+export function getMockedProject(id: string) {
+  const project = mockProjects.find((project) => project.id === id);
+
+  return project;
+}
