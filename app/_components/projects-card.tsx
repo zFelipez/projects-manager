@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 
@@ -15,11 +16,11 @@ export  function ProjectCard({title, description, action, content, footer}: Proj
 
     return (
 
-        <Card className=" w-[500px]">
+        <Card className=" w-[500px] h-[200px] ">
         <CardHeader>
           <CardTitle>{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
-          <CardAction>{action}</CardAction>
+          <CardAction> <Button>{action}</Button></CardAction>
         </CardHeader>
         <CardContent>
           <p>{content}</p>
