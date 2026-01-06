@@ -1,5 +1,4 @@
 import { DashboardHeader } from "@/app/_components/dahsboard-header";
-import { Button } from "@/components/ui/button";
 
 import { getMockedProject } from "@/lib/mock-projects";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +7,8 @@ import { House } from "lucide-react";
 
 import { DeleteProjectAction } from "../_components/project-delete-action";
 import { StatusBadge } from "@/app/_components/status-badge";
+ 
+import { EditForm } from "../_components/edit-form";
 
 type ProjectDetailsProps = {
   params: Promise<{ id: string }>;
@@ -47,7 +48,9 @@ export default async function ProjectDetails({ params }: ProjectDetailsProps) {
                 <span className="font-bold">
                   Ultima vez atualizado em:
                 </span>{" "}
-                <Badge className="text-primary hover:bg-secondary/80">{project.updatedAt}</Badge>
+                <Badge className="text-primary hover:bg-secondary/80">
+                  {project.updatedAt}
+                </Badge>
               </p>
               <p>
                 {" "}
@@ -58,14 +61,7 @@ export default async function ProjectDetails({ params }: ProjectDetailsProps) {
               </p>
             </div>
 
-            <Link
-              href={`/projects/${project.id}/edit`}
-              className="  bg-secondary w-full max-w-[400px] hover:bg-secondary/80 rounded-lg"
-            >
-              <Button className=" w-full bg-transparent hover:bg-transparent text-primary">
-                Editar
-              </Button>
-            </Link>
+            <EditForm title={project.title} description={project.description} status={project.status}/>
             <DeleteProjectAction id={project.id} />
           </div>
         )}
