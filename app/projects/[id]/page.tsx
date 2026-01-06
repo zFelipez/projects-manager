@@ -18,37 +18,37 @@ export default async function ProjectDetails({ params }: ProjectDetailsProps) {
   const project = getMockedProject(id);
 
   return (
-    <div className="flex flex-col  min-h-screen  bg-primary font-sans  p-8 overflow-y-auto ">
+    <div className="flex flex-col  min-h-screen  bg-secondary font-sans  p-8 overflow-y-auto ">
       <DashboardHeader title="Project Details" />
        
 
       <div className=" w-full  flex-1 flex  flex-col  items-center justify-center flex-wrap gap-4 p-8">
         {project && (
           <div className=" w-full flex flex-col items-center gap-4 ">
-            <div className="flex flex-col gap-4 text-secondary border rounded-lg max-w-[600px] p-8 ">
+            <div className="flex flex-col gap-4 text-primary border  shadow-lg rounded-sm max-w-[600px] p-8 ">
               <h1 className="text-xl font-bold text-center">{project.title}</h1>
-              <p className=" ">
-                {" "}
-                <span className="font-bold">Descrição:</span>{" "}
+              <p className=" text-primary ">
+                
+                <span className="font-bold  ">Descrição:</span>{" "}
                 {project.description}
               </p>
-              <p>
+              <p className="  ">
                 {" "}
-                <span className="font-bold">Status:</span>{" "}
+                <span className="font-bold ">Status:</span>{" "}
                 <StatusBadge status={project.status} />
               </p>
-              <p>
+              <p className="  ">
                 {" "}
-                <span className="font-bold">
+                <span className="font-bold ">
                   Ultima vez atualizado em:
                 </span>{" "}
-                <Badge className="text-primary hover:bg-secondary/80">
+                <Badge className="text-secondary hover:bg-secondary/80">
                   {project.updatedAt}
                 </Badge>
               </p>
-              <p>
+              <p className=" ">
                 {" "}
-                <span className="font-bold">
+                <span className="font-bold ">
                   Ultima vez atualizado em:
                 </span>{" "}
                 <StatusBadge status={project.status} />

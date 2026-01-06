@@ -23,7 +23,7 @@ export function EditForm({ title, description, status }: EditFormProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className=" bg-secondary max-w-[400px] rounded-lg w-full hover:bg-secondary/80 text-primary">
+        <Button className=" bg-primary max-w-[400px] rounded-lg w-full hover:bg-primary/80 text-secondary">
           Editar
         </Button>
       </DialogTrigger>
