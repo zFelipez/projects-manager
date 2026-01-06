@@ -5,6 +5,10 @@ import { getMockedProject } from "@/lib/mock-projects";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { House } from "lucide-react";
+import { DeleteProject } from "../_actions/delete-project";
+import { DeleteProjectAction } from "../_components/project-delete-action";
+
+
 type ProjectDetailsProps = {
   params: Promise<{ id: string }>;
 };
@@ -28,8 +32,10 @@ export default async function ProjectDetails({ params }: ProjectDetailsProps) {
               <p>Atualizado em : <Badge className="bg-secondary text-primary hover:bg-secondary/80">{project.updatedAt}</Badge></p>
             </div>
 
-            <Button className=" bg-secondary text-primary w-full max-w-[400px] hover:bg-secondary/80">Editar</Button>
-            <Button className=" bg-red-500 text-primary w-full max-w-[400px] hover:bg-red-500/80">Deletar</Button>
+            <Link href={`/projects/${project.id}/edit`} className="  bg-secondary w-full max-w-[400px] hover:bg-secondary/80 rounded-lg">
+              <Button className=" w-full bg-transparent hover:bg-transparent text-primary">Editar</Button>
+            </Link>
+           <DeleteProjectAction id={project.id}/>
           </div>
         )}
       </div>  
