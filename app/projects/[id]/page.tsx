@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { House } from "lucide-react";
 
-import { DeleteProjectAction } from "../_components/project-delete-action";
+import { DeleteProjectBtn } from "../_components/delete-btn";
 import { StatusBadge } from "@/app/_components/status-badge";
  
 import { EditForm } from "../_components/edit-form";
@@ -62,7 +62,7 @@ export default async function ProjectDetails({ params }: ProjectDetailsProps) {
             </div>
 
             <EditForm title={project.title} description={project.description} status={project.status}/>
-            <DeleteProjectAction id={project.id} />
+            <DeleteProjectBtn id={project.id} />
           </div>
         )}
       </div>

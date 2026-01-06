@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { DeleteProject } from "../_actions/delete-project";
 
-export function DeleteProjectAction({ id }: { id: string }) {
+export function DeleteProjectBtn({ id }: { id: string }) {
   async function handleDeleteProject(id: string) {
     const confirmDelete = confirm(
       "Tem certeza que deseja deletar este projeto?"
