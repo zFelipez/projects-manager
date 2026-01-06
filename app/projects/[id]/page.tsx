@@ -2,8 +2,7 @@ import { DashboardHeader } from "@/app/_components/dahsboard-header";
 
 import { getMockedProject } from "@/lib/mock-projects";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
-import { House } from "lucide-react";
+ 
 
 import { DeleteProjectBtn } from "../_components/delete-btn";
 import { StatusBadge } from "@/app/_components/status-badge";

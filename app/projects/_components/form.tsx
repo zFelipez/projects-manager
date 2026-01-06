@@ -1,3 +1,5 @@
+'use client'
+
 import { Controller, useForm } from "react-hook-form";
 import { FormSchema, formSchema } from "../_schemas/form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,9 +11,9 @@ import { Spinner } from "@/components/ui/spinner";
 
 
 type FormProps = {
-  title: string;
-  description: string;
-  status: string;
+  title?: string;
+  description?: string;
+  status?: string;
 };
 
 
@@ -19,15 +21,15 @@ export function Form({ title, description, status }: FormProps) {
     const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: title,
-      description: description,
-      status: status,
+      title: title || "",
+      description: description || "",
+      status: status || "",
     },
   });
 
     
     return (
-        <form id="form-rhf-textarea" className="flex flex-col gap-4">
+        <form id="form-rhf-textarea" className="flex flex-col gap-4 w-full">
           <FieldGroup>
             <Controller
               name="title"

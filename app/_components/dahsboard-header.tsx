@@ -17,7 +17,7 @@ export function DashboardHeader({ title }: DashboardMenuProps) {
       </h1>
 
       { path === '/' && (
-        <Link href="/new">
+        <Link href="/projects/new">
           <Button className=" bg-white text-primary hover:bg-secondary/80 rounded-sm">
             Adicionar Projeto
           </Button>
