@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-
-
+import { Badge } from "@/components/ui/badge";
+import { StatusBadge } from "./status-badge";
 type ProjectCardProps = {
     title: string;
     description: string;
@@ -24,10 +24,10 @@ export  function ProjectCard({title, description, action, status, footer}: Proje
           <CardAction> <Link href={`/projects/${action}`}><Button> Detalhes </Button></Link></CardAction>
         </CardHeader>
         <CardContent>
-          <p>{status}</p>
+          <p> <span className="font-bold">Status:</span>  <StatusBadge status={status} /></p>
         </CardContent>
         <CardFooter>
-          <p>{footer}</p>
+          <p> <span className="font-bold">Ultima vez atualizado em:</span> <Badge className="bg-secondary text-primary hover:bg-secondary/80">{footer}</Badge></p>
         </CardFooter>
       </Card>   
     )
