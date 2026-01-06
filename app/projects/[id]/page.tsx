@@ -21,12 +21,7 @@ export default async function ProjectDetails({ params }: ProjectDetailsProps) {
   return (
     <div className="flex flex-col  min-h-screen  bg-primary font-sans  p-8 overflow-y-auto ">
       <DashboardHeader title="Project Details" />
-      <div className=" text-secondary text-xl text-center">
-        {" "}
-        <Link href="/">
-          <House className="inline hover:text-secondary/80" />
-        </Link>
-      </div>
+       
 
       <div className=" w-full  flex-1 flex  flex-col  items-center justify-center flex-wrap gap-4 p-8">
         {project && (
