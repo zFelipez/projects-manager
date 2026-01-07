@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
 
-export function UserForm() {
+export function UserForm({BtnText}: {BtnText: string}) {
   const userform = useForm<UserFormSchema>({
     resolver: zodResolver(userFormSchema),
     defaultValues: {
@@ -108,7 +108,7 @@ export function UserForm() {
       </FieldGroup>
 
       <div className="flex justify-end gap-2 flex-col w-full">
-        <Button type="submit">Fazer login</Button>
+        <Button type="submit">{BtnText}</Button>
         {/* { userform.formState.isSubmitting && ( */}
         <Badge>
           {" "}
