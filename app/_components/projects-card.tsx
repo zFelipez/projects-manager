@@ -28,7 +28,7 @@ export function ProjectCard({
   footer,
 }: ProjectCardProps) {
   return (
-    <Card className=" w-[500px] h-[200px] ">
+    <Card className=" w-[500px] min-h-[200px]  max-h-[400px]  overflow-y-auto">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
