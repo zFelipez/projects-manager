@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   DropdownMenu,
@@ -13,11 +13,9 @@ import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { logout } from "@/app/_actions/logout";
 
-export function AccountLinksClient({session}: {session: any}) {
-
-
-    return(
-        <DropdownMenu>
+export function AccountLinksClient({ session }: { session: any }) {
+  return (
+    <DropdownMenu>
       <DropdownMenuTrigger className="p-2 hover:bg-secondary   rounded-sm hover:[&_svg]:text-primary cursor-pointer">
         <User className="text-white" size={20} />
       </DropdownMenuTrigger>
@@ -25,8 +23,7 @@ export function AccountLinksClient({session}: {session: any}) {
         <DropdownMenuLabel>Conta</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer" asChild>
-    
-          <Link href={"/user/login"}>Login</Link> 
+          <Link href={"/user/login"}>Login</Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer" asChild>
           <Link href={"/user/signup"}>Sign Up</Link>
@@ -34,12 +31,15 @@ export function AccountLinksClient({session}: {session: any}) {
 
         {session && (
           <DropdownMenuItem className="cursor-pointer" asChild>
-            <Button onClick={logout} className="w-full bg-zinc-100 text-primary border-none hover:bg-transparent ">Logout</Button>
+            <Button
+              onClick={logout}
+              className="w-full bg-zinc-100 text-primary border-none hover:bg-transparent "
+            >
+              Logout
+            </Button>
           </DropdownMenuItem>
         )}
-        
       </DropdownMenuContent>
-      
     </DropdownMenu>
-    )
+  );
 }

@@ -15,15 +15,25 @@ import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
 
 import { projectActionManager } from "../services/project-action-manager";
+import { redirect } from "next/navigation";
+ 
+import { toast } from "sonner";
 
 type FormProps = {
   title?: string;
   description?: string;
   status?: string;
   children?: React.ReactNode;
+  action: "create" | "update";
 };
 
-export function Form({ title, description, status, children }: FormProps) {
+export function Form({
+  title,
+  description,
+  status,
+  children,
+  action,
+}: FormProps) {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,7 +44,20 @@ export function Form({ title, description, status, children }: FormProps) {
   });
 
   async function onSubmit(data: FormSchema) {
-    await projectActionManager({ data, action: "create" });
+    const result = await projectActionManager({ data, action });
+    if (!result) {
+      toast.error("Erro ao criar projeto");
+      return;
+    }
+    if (!result.success) {
+      toast.error(result.error);
+      return;
+    }
+    if (result.success) {
+      toast.success("Projeto criado com sucesso");
+     
+      redirect("/");
+    }
   }
 
   return (
@@ -114,12 +137,11 @@ export function Form({ title, description, status, children }: FormProps) {
         <Button disabled={form.formState.isSubmitting} type="submit">
           Salvar
         </Button>
-         { form.formState.isSubmitting && (   
-        <Badge>
-          
-          <Spinner></Spinner>
-        </Badge>
-         )} 
+        {form.formState.isSubmitting && (
+          <Badge>
+            <Spinner></Spinner>
+          </Badge>
+        )}
       </div>
     </form>
   );

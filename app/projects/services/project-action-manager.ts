@@ -1,4 +1,4 @@
-import { CreateProject } from "../_actions/create-project";
+import { createProject } from "../_actions/create-project";
 import { FormSchema } from "../_schemas/form-schema";
 
 type ProjectActionManagerSchema = {
@@ -11,9 +11,9 @@ export async function projectActionManager({
   action,
 }: ProjectActionManagerSchema) {
   if (action === "create") {
-    await CreateProject(data);
+    const result = await createProject(data);
 
-    return;
+    return result;
   }
 
   if (action === "update") {

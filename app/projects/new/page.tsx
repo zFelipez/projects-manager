@@ -8,7 +8,7 @@ export  default function NewProject() {
       
 
       <div className=" w-full  flex-1 flex  items-center justify-center flex-wrap gap-4 border rounded-lg border-zinc-200">
-         <Form title="" description="" status="" />
+         <Form action="create" />
       </div>
     </div>
   );
