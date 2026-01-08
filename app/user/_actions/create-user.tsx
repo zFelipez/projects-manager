@@ -7,6 +7,9 @@ import { UserFormSchema, userFormSchema } from "../_schemas/user-form";
 import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
 
+
+
+
 export async function CreateUser(data: UserFormSchema) {
   const parsed = userFormSchema.safeParse(data);
 
@@ -14,18 +17,21 @@ export async function CreateUser(data: UserFormSchema) {
     throw new Error("Dados Invalidos");
   }
 
+  if (parsed.data.action !== "create") {
+    throw new Error("Acao Invalida");
+  }
+
   const userCreated = await prisma.user.findUnique({
     where: { name: data.name },
   });
 
-  console.log(userCreated)
 
   if (!userCreated) {
-    const { name, password, age } = parsed.data;
-
+    const { name, password, age } = parsed.data
+ 
     const hashedPassword = await bcrypt.hash(password, 10);
     try {
-      const createdUser = await prisma.user.create({
+     await prisma.user.create({
         data: {
           name,
           password: hashedPassword,
@@ -40,7 +46,5 @@ export async function CreateUser(data: UserFormSchema) {
       }
     }
   }
-
-  console.log("deu certo");
   redirect("/user/login");
 }

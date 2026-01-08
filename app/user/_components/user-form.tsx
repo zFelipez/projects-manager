@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
 import { UserActionManager } from "../services/user-action-manager";
+import Link from "next/link";
 
 export function UserForm({
   BtnText,
@@ -25,6 +26,7 @@ export function UserForm({
   const userform = useForm<UserFormSchema>({
     resolver: zodResolver(userFormSchema),
     defaultValues: {
+      action: action,
       name: "",
       password: "",
       age: undefined,
@@ -88,7 +90,7 @@ export function UserForm({
         ></Controller>
       </FieldGroup>
 
-      <FieldGroup>
+      { action === 'create' && (<FieldGroup>
         <Controller
           name="age"
           control={userform.control}
@@ -115,9 +117,34 @@ export function UserForm({
             </Field>
           )}
         ></Controller>
-      </FieldGroup>
+      </FieldGroup>)}
 
       <div className="flex justify-end gap-2 flex-col w-full">
+        {action === "create" && (
+          <p>
+            {" "}
+            Ja tem uma conta?{" "}
+            <Link
+              className="text-blue-400 hover:text-blue-600"
+              href={"/user/login"}
+            >
+              Entao entre aqui{" "}
+            </Link>
+          </p>
+        )}
+        {action === "login" && (
+          <p>
+            {" "}
+            Nao tem uma conta?{" "}
+            <Link
+              className="text-blue-400 hover:text-blue-600"
+              href={"/user/signup"}
+            >
+              Entao crie uma aqui
+            </Link>
+          </p>
+        )}
+
         <Button disabled={userform.formState.isSubmitting} type="submit">
           {BtnText}
         </Button>
