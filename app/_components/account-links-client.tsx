@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { User } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { logout } from "@/app/_actions/logout";
 
 export function AccountLinksClient({session}: {session: any}) {
 
@@ -32,7 +34,7 @@ export function AccountLinksClient({session}: {session: any}) {
 
         {session && (
           <DropdownMenuItem className="cursor-pointer" asChild>
-            <Link href={"/user/logout"}>Logout</Link>
+            <Button onClick={logout} className="w-full bg-zinc-100 text-primary border-none hover:bg-transparent ">Logout</Button>
           </DropdownMenuItem>
         )}
         
