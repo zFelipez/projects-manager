@@ -13,19 +13,21 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
+import { UserActionManager } from "../services/user-action-manager";
 
-export function UserForm({BtnText}: {BtnText: string}) {
+export function UserForm({ BtnText ,action}: { BtnText: string , action:'create' | 'login'}) {
   const userform = useForm<UserFormSchema>({
     resolver: zodResolver(userFormSchema),
     defaultValues: {
-    name: "",
-    password: undefined,
-    age: undefined,
-  },
+      name: "",
+      password: "",
+      age: undefined,
+    },
   });
 
-  function onSubmit() {
-    console.log("enviado");
+  function onSubmit(data:UserFormSchema) {
+    
+    UserActionManager(data , action)
     return;
   }
 
@@ -70,9 +72,8 @@ export function UserForm({BtnText}: {BtnText: string}) {
                 aria-invalid={fieldState.invalid}
                 placeholder=" Digite sua senha"
                 autoComplete="off"
-                type="number"                       
-                value={field.value ?? ""}
-                onChange={(e) => field.onChange( e.target.value == ''?  undefined:Number(e.target.value))}
+                type="password"
+                {...userform.register("password")}
               />
               {fieldState.error && (
                 <FieldError errors={[fieldState.error]}></FieldError>
@@ -95,9 +96,13 @@ export function UserForm({BtnText}: {BtnText: string}) {
                 aria-invalid={fieldState.invalid}
                 placeholder=" Digite sua idade"
                 autoComplete="off"
-                type="number"                       
+                type="number"
                 value={field.value ?? ""}
-                onChange={(e) => field.onChange( e.target.value == ''?  undefined:Number(e.target.value))}
+                onChange={(e) =>
+                  field.onChange(
+                    e.target.value == "" ? undefined : Number(e.target.value)
+                  )
+                }
               />
               {fieldState.error && (
                 <FieldError errors={[fieldState.error]}></FieldError>
