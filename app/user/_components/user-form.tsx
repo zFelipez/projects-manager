@@ -15,6 +15,8 @@ import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
 import { UserActionManager } from "../services/user-action-manager";
 import Link from "next/link";
+import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 export function UserForm({
   BtnText,
@@ -34,7 +36,17 @@ export function UserForm({
   });
 
   async function onSubmit(data: UserFormSchema) {
-    await UserActionManager(data, action);
+    const result = await UserActionManager(data, action);
+     
+    if( result !== undefined && !result.success ){
+      toast.error(result.error);
+      return;
+    }
+     
+    if ( result !== undefined && result.success) {
+       toast.success("Usuario criado com sucesso");
+      redirect("/user/login");
+    }
     return;
   }
 

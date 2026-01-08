@@ -1,5 +1,7 @@
+ 
 import { CreateUser } from "../_actions/create-user";
 import { UserFormSchema } from "../_schemas/user-form";
+ 
 
 export async function UserActionManager(
   data: UserFormSchema,
@@ -8,8 +10,8 @@ export async function UserActionManager(
   if (action === "create") {
     console.log("criando usuario");
 
-    await CreateUser(data);
-    return;
+     return await CreateUser(data);
+   
   }
 
   if (action === "login") {

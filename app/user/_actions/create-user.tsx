@@ -5,10 +5,6 @@ import { prisma } from "@/lib/prisma";
 
 import { UserFormSchema, userFormSchema } from "../_schemas/user-form";
 import bcrypt from "bcryptjs";
-import { redirect } from "next/navigation";
-
-
-
 
 export async function CreateUser(data: UserFormSchema) {
   const parsed = userFormSchema.safeParse(data);
@@ -21,30 +17,22 @@ export async function CreateUser(data: UserFormSchema) {
     throw new Error("Acao Invalida");
   }
 
-  const userCreated = await prisma.user.findUnique({
-    where: { name: data.name },
-  });
+  const { name, password, age } = parsed.data;
 
-
-  if (!userCreated) {
-    const { name, password, age } = parsed.data
- 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    try {
-     await prisma.user.create({
-        data: {
-          name,
-          password: hashedPassword,
-          age,
-        },
-      });
-
-      
-    } catch (e: any) {
-      if (e.code === "P2002") {
-        throw new Error("Usuario ja cadastrado");
-      }
+  const hashedPassword = await bcrypt.hash(password, 10);
+  try {
+    await prisma.user.create({
+      data: {
+        name,
+        password: hashedPassword,
+        age,
+      },
+    });
+  } catch (e: any) {
+    if (e.code === "P2002") {
+      return { succes: false, error: "Ja existe um usuario com esse nome." };
     }
   }
-  redirect("/user/login");
+
+  return { success: true };
 }
