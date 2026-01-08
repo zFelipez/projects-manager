@@ -26,6 +26,7 @@ type FormProps = {
   children?: React.ReactNode;
   status?: "ACTIVE" | "INACTIVE" | "PAUSED";
   action: "create" | "update";
+  id?: string;
 };
 
 export function Form({
@@ -34,6 +35,7 @@ export function Form({
   children,
   status,
   action,
+  id,
 }: FormProps) {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -45,9 +47,9 @@ export function Form({
   });
 
   async function onSubmit(data: FormSchema) {
-    const result = await projectActionManager({ data, action });
+    const result = await projectActionManager({ data, action, id});
     if (!result) {
-      toast.error("Erro ao criar projeto");
+      toast.error("Erro ao criar ou ao atualizar projeto");
       return;
     }
     if (!result.success) {
@@ -55,7 +57,7 @@ export function Form({
       return;
     }
     if (result.success) {
-      toast.success("Projeto criado com sucesso");
+      toast.success( result.success);
 
       redirect("/");
     }

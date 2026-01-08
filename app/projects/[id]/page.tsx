@@ -57,7 +57,7 @@ export default async function ProjectDetails({ params }: ProjectDetailsProps) {
               </p>
             </div>
 
-            <EditForm title={project.title} description={project.description} status={project.status}/>
+            <EditForm title={project.title} id={project.id} description={project.description} status={project.status}/>
             <DeleteProjectBtn id={project.id} />
           </div>
         )}

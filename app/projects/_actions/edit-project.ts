@@ -6,7 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/get-current-user";
 import { revalidatePath } from "next/cache";
 
-export async function createProject(formData: FormSchema) {
+export async function editProject(formData: FormSchema, id: string) {
   const userSession = await getCurrentUser();
 
   if (!userSession) return { success: false, error: "Usuário não autenticado" };
@@ -15,18 +15,28 @@ export async function createProject(formData: FormSchema) {
 
   if (!parsed) return { success: false, error: "Dados inválidos" };
   try {
-    await prisma.project.create({
-      data: {
-        title: parsed.title,
-        description: parsed.description,
-        status: parsed.status,
-        userId: userSession.id,
-        name: userSession.name,
+
+
+    const project = await prisma.project.findUnique({
+      where: {
+        id,
       },
     });
-    
+
+    if (!project) return { success: false, error: "Projeto não encontrado" };
+
+    await prisma.project.update({
+      where: {
+        id,
+      },
+      data: {
+        ...project,
+        ...parsed,
+      },
+    });
+     
   } catch (error) {
-    return { success: false, error: "Erro ao criar projeto" };
+    return { success: false, error: "Erro ao editar projeto" };
   }
-  return { success: 'Projeto criado com sucesso' };
+  return { success: 'Projeto editado com sucesso' };
 }

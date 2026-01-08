@@ -16,10 +16,11 @@ import { Form } from "./form";
 type EditFormProps = {
   title: string;
   description: string;
-  status: 'ACTIVE' | 'INACTIVE' | 'PAUSED'
+  status: 'ACTIVE' | 'INACTIVE' | 'PAUSED';
+  id: string;
 };
 
-export function EditForm({ title, description, status }: EditFormProps) {
+export function EditForm({ title, description, status, id }: EditFormProps) {
   
   return (
     <Dialog>
@@ -36,7 +37,7 @@ export function EditForm({ title, description, status }: EditFormProps) {
           </DialogDescription>
         </DialogHeader>
 
-       <Form title={title} status={status} description={description} action="update"/>
+       <Form title={title} status={status} description={description} action="update" id={id} />
       </DialogContent>
     </Dialog>
   );
