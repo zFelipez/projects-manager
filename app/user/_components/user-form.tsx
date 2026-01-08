@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
-import { UserActionManager } from "../services/user-action-manager";
+import { userActionManager } from "../services/user-action-manager";
 import Link from "next/link";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
@@ -36,16 +36,22 @@ export function UserForm({
   });
 
   async function onSubmit(data: UserFormSchema) {
-    const result = await UserActionManager(data, action);
-     
-    if( result !== undefined && !result.success ){
+    const result = await userActionManager(data, action);
+
+    if (result !== undefined && !result.success) {
       toast.error(result.error);
       return;
     }
-     
-    if ( result !== undefined && result.success) {
-       toast.success("Usuario criado com sucesso");
-      redirect("/user/login");
+
+    if (result !== undefined && result.success) {
+      if (action === "create") {
+        toast.success("Usuario criado com sucesso");
+        redirect("/user/login");
+      }
+      if (action === "login") {
+        toast.success("Usuario logado com sucesso");
+        redirect("/");
+      }
     }
     return;
   }
@@ -102,34 +108,36 @@ export function UserForm({
         ></Controller>
       </FieldGroup>
 
-      { action === 'create' && (<FieldGroup>
-        <Controller
-          name="age"
-          control={userform.control}
-          render={({ field, fieldState }) => (
-            <Field>
-              <FieldLabel htmlFor="age"> Idade </FieldLabel>
-              <Input
-                {...field}
-                id="age"
-                aria-invalid={fieldState.invalid}
-                placeholder=" Digite sua idade"
-                autoComplete="off"
-                type="number"
-                value={field.value ?? ""}
-                onChange={(e) =>
-                  field.onChange(
-                    e.target.value == "" ? undefined : Number(e.target.value)
-                  )
-                }
-              />
-              {fieldState.error && (
-                <FieldError errors={[fieldState.error]}></FieldError>
-              )}
-            </Field>
-          )}
-        ></Controller>
-      </FieldGroup>)}
+      {action === "create" && (
+        <FieldGroup>
+          <Controller
+            name="age"
+            control={userform.control}
+            render={({ field, fieldState }) => (
+              <Field>
+                <FieldLabel htmlFor="age"> Idade </FieldLabel>
+                <Input
+                  {...field}
+                  id="age"
+                  aria-invalid={fieldState.invalid}
+                  placeholder=" Digite sua idade"
+                  autoComplete="off"
+                  type="number"
+                  value={field.value ?? ""}
+                  onChange={(e) =>
+                    field.onChange(
+                      e.target.value == "" ? undefined : Number(e.target.value)
+                    )
+                  }
+                />
+                {fieldState.error && (
+                  <FieldError errors={[fieldState.error]}></FieldError>
+                )}
+              </Field>
+            )}
+          ></Controller>
+        </FieldGroup>
+      )}
 
       <div className="flex justify-end gap-2 flex-col w-full">
         {action === "create" && (

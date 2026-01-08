@@ -6,7 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { UserFormSchema, userFormSchema } from "../_schemas/user-form";
 import bcrypt from "bcryptjs";
 
-export async function CreateUser(data: UserFormSchema) {
+export async function createUser(data: UserFormSchema) {
   const parsed = userFormSchema.safeParse(data);
 
   if (!parsed.success) {
@@ -30,7 +30,7 @@ export async function CreateUser(data: UserFormSchema) {
     });
   } catch (e: any) {
     if (e.code === "P2002") {
-      return { succes: false, error: "Ja existe um usuario com esse nome." };
+      return { success: false, error: "Ja existe um usuario com esse nome." };
     }
   }
 
