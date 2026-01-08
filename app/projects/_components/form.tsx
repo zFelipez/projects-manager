@@ -16,7 +16,7 @@ import { Spinner } from "@/components/ui/spinner";
 
 import { projectActionManager } from "../services/project-action-manager";
 import { redirect } from "next/navigation";
- 
+
 import { toast } from "sonner";
 import { ComboboxStatus } from "./combobox";
 
@@ -24,7 +24,6 @@ type FormProps = {
   title?: string;
   description?: string;
   children?: React.ReactNode;
-  status: 'ACTIVE' | 'INACTIVE' | 'PAUSED'
   action: "create" | "update";
 };
 
@@ -32,7 +31,7 @@ export function Form({
   title,
   description,
   children,
-  status,
+
   action,
 }: FormProps) {
   const form = useForm<FormSchema>({
@@ -40,7 +39,6 @@ export function Form({
     defaultValues: {
       title: title || "",
       description: description || "",
-      status: status || "ACTIVE",
     },
   });
 
@@ -56,7 +54,7 @@ export function Form({
     }
     if (result.success) {
       toast.success("Projeto criado com sucesso");
-     
+
       redirect("/");
     }
   }
