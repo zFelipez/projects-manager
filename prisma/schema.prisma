@@ -26,13 +26,20 @@ model User {
 }
 
 
+enum ProjectStatus {
+  ACTIVE
+  INACTIVE
+  PAUSED
+}
+
+
 model Project{
 
   id String @id @default(uuid())
   name String
   title String 
   description String 
-  status String 
+  status ProjectStatus 
   updatedAt DateTime @default(now())
   userId String
   user User @relation(  fields: [userId] , references: [id])

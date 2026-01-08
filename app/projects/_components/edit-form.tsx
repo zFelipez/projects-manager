@@ -10,14 +10,16 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Form } from "./form";
+import { Project } from "@prisma/client";
  
 
 type EditFormProps = {
   title: string;
   description: string;
+  status: 'ACTIVE' | 'INACTIVE' | 'PAUSED'
 };
 
-export function EditForm({ title, description }: EditFormProps) {
+export function EditForm({ title, description, status }: EditFormProps) {
   
   return (
     <Dialog>
@@ -34,7 +36,7 @@ export function EditForm({ title, description }: EditFormProps) {
           </DialogDescription>
         </DialogHeader>
 
-       <Form title={title} description={description} action="update"/>
+       <Form title={title} status={status} description={description} action="update"/>
       </DialogContent>
     </Dialog>
   );

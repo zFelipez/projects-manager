@@ -24,7 +24,7 @@ type FormProps = {
   title?: string;
   description?: string;
   children?: React.ReactNode;
-  status?: 'ACTIVE' | 'INACTIVE' | 'PAUSED'
+  status: 'ACTIVE' | 'INACTIVE' | 'PAUSED'
   action: "create" | "update";
 };
 

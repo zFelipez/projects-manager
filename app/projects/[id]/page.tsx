@@ -1,6 +1,6 @@
  
 
-import { getMockedProject } from "@/lib/mock-projects";
+
 import { Badge } from "@/components/ui/badge";
  
 
@@ -8,6 +8,7 @@ import { DeleteProjectBtn } from "../_components/delete-btn";
 import { StatusBadge } from "@/app/_components/status-badge";
  
 import { EditForm } from "../_components/edit-form";
+import { getProject } from "../_data-access/get-project";
  
 
 type ProjectDetailsProps = {
@@ -16,7 +17,7 @@ type ProjectDetailsProps = {
 
 export default async function ProjectDetails({ params }: ProjectDetailsProps) {
   const { id } = await params;
-  const project = getMockedProject(id);
+  const project = await getProject(id);
 
   return (
     <div className="flex flex-col  min-h-screen  bg-secondary font-sans  p-8 overflow-y-auto ">
@@ -44,7 +45,7 @@ export default async function ProjectDetails({ params }: ProjectDetailsProps) {
                   Ultima vez atualizado em:
                 </span>{" "}
                 <Badge className="text-secondary hover:bg-secondary/80">
-                  {project.updatedAt}
+                  {project.updatedAt.toLocaleDateString()}
                 </Badge>
               </p>
               <p className=" ">
