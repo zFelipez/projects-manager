@@ -18,20 +18,21 @@ import { projectActionManager } from "../services/project-action-manager";
 import { redirect } from "next/navigation";
  
 import { toast } from "sonner";
+import { ComboboxStatus } from "./combobox";
 
 type FormProps = {
   title?: string;
   description?: string;
-  status?: string;
   children?: React.ReactNode;
+  status?: 'ACTIVE' | 'INACTIVE' | 'PAUSED'
   action: "create" | "update";
 };
 
 export function Form({
   title,
   description,
-  status,
   children,
+  status,
   action,
 }: FormProps) {
   const form = useForm<FormSchema>({
@@ -39,7 +40,7 @@ export function Form({
     defaultValues: {
       title: title || "",
       description: description || "",
-      status: status || "",
+      status: status || "ACTIVE",
     },
   });
 
@@ -117,13 +118,7 @@ export function Form({
           render={({ field, fieldState }) => (
             <Field>
               <FieldLabel htmlFor="status">Status</FieldLabel>
-              <Input
-                {...field}
-                id="status"
-                aria-invalid={fieldState.invalid}
-                placeholder="Digite o status do projeto"
-                autoComplete="off"
-              />
+              <ComboboxStatus value={field.value} onChange={field.onChange} />
               {fieldState.error && (
                 <FieldError errors={[fieldState.error]}></FieldError>
               )}

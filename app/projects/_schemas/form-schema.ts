@@ -5,7 +5,7 @@ export const formSchema = z.object({
   description: z
     .string("Deve ser somente letras")
     .min(10, "Descrição muito curta "),
-  status: z.string("Deve ser somente letras").min(10, "Descrição muito curta "),
+  status: z.enum(["ACTIVE", "INACTIVE", "PAUSED"]),
 });
 
 export type FormSchema = z.infer<typeof formSchema>;

@@ -15,10 +15,9 @@ import { Form } from "./form";
 type EditFormProps = {
   title: string;
   description: string;
-  status: string;
 };
 
-export function EditForm({ title, description, status }: EditFormProps) {
+export function EditForm({ title, description }: EditFormProps) {
   
   return (
     <Dialog>
@@ -35,7 +34,7 @@ export function EditForm({ title, description, status }: EditFormProps) {
           </DialogDescription>
         </DialogHeader>
 
-       <Form title={title} description={description} status={status}/>
+       <Form title={title} description={description} action="update"/>
       </DialogContent>
     </Dialog>
   );
