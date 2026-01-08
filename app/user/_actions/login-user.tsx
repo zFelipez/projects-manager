@@ -4,6 +4,7 @@
 import { prisma } from "@/lib/prisma";
 import { userFormSchema, UserFormSchema } from "../_schemas/user-form";
 import bcrypt from "bcryptjs";
+import { cookies } from "next/headers";
 
 export async function loginUser(data: UserFormSchema) {
   const parsed = userFormSchema.safeParse(data);
@@ -34,8 +35,17 @@ export async function loginUser(data: UserFormSchema) {
         error: "Usuario invalido ou senha invalida,tente novamente",
       };
     }
+
+    (await cookies()).set({
+      name: "session",
+      value: userCreated.id,
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+    });
   } catch (e) {
-    return { success: false, error:'Erro ao criar usuario' };
+    return { success: false, error: "Erro ao criar usuario" };
   }
 
   return { success: true };
