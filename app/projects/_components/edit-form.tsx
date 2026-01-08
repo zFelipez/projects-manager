@@ -10,7 +10,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Form } from "./form";
-import { Project } from "@prisma/client";
+ 
  
 
 type EditFormProps = {

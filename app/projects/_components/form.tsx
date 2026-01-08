@@ -24,6 +24,7 @@ type FormProps = {
   title?: string;
   description?: string;
   children?: React.ReactNode;
+  status?: "ACTIVE" | "INACTIVE" | "PAUSED";
   action: "create" | "update";
 };
 
@@ -31,7 +32,7 @@ export function Form({
   title,
   description,
   children,
-
+  status,
   action,
 }: FormProps) {
   const form = useForm<FormSchema>({
@@ -39,6 +40,7 @@ export function Form({
     defaultValues: {
       title: title || "",
       description: description || "",
+      status: status || "ACTIVE",
     },
   });
 
