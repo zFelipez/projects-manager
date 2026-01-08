@@ -11,15 +11,12 @@ export async function projectActionManager({
   action,
 }: ProjectActionManagerSchema) {
   if (action === "create") {
-    console.log(" criando projeto");
     await CreateProject(data);
 
     return;
   }
 
   if (action === "update") {
-    console.log(" atualizando");
-
     return;
   }
 }

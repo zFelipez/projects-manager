@@ -114,12 +114,12 @@ export function Form({ title, description, status, children }: FormProps) {
         <Button disabled={form.formState.isSubmitting} type="submit">
           Salvar
         </Button>
-        {/* { form.formState.isSubmitting && ( */}
+         { form.formState.isSubmitting && (   
         <Badge>
-          {" "}
+          
           <Spinner></Spinner>
         </Badge>
-        {/* )} */}
+         )} 
       </div>
     </form>
   );

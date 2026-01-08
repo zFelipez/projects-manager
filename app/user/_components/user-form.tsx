@@ -15,7 +15,13 @@ import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
 import { UserActionManager } from "../services/user-action-manager";
 
-export function UserForm({ BtnText ,action}: { BtnText: string , action:'create' | 'login'}) {
+export function UserForm({
+  BtnText,
+  action,
+}: {
+  BtnText: string;
+  action: "create" | "login";
+}) {
   const userform = useForm<UserFormSchema>({
     resolver: zodResolver(userFormSchema),
     defaultValues: {
@@ -25,9 +31,8 @@ export function UserForm({ BtnText ,action}: { BtnText: string , action:'create'
     },
   });
 
-  function onSubmit(data:UserFormSchema) {
-    
-    UserActionManager(data , action)
+  async function onSubmit(data: UserFormSchema) {
+    await UserActionManager(data, action);
     return;
   }
 
@@ -113,13 +118,16 @@ export function UserForm({ BtnText ,action}: { BtnText: string , action:'create'
       </FieldGroup>
 
       <div className="flex justify-end gap-2 flex-col w-full">
-        <Button type="submit">{BtnText}</Button>
-        {/* { userform.formState.isSubmitting && ( */}
-        <Badge>
-          {" "}
-          <Spinner></Spinner>
-        </Badge>
-        {/* )} */}
+        <Button disabled={userform.formState.isSubmitting} type="submit">
+          {BtnText}
+        </Button>
+
+        {userform.formState.isSubmitting && (
+          <Badge>
+            {" "}
+            <Spinner></Spinner>
+          </Badge>
+        )}
       </div>
     </form>
   );
