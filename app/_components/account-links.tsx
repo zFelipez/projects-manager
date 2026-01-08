@@ -1,3 +1,5 @@
+'use client'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,11 +20,11 @@ export function AccountLinks() {
       <DropdownMenuContent>
         <DropdownMenuLabel>Conta</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer">
-          {" "}
-          <Link href={"/user/login"}>Login</Link>{" "}
+        <DropdownMenuItem className="cursor-pointer" asChild>
+    
+          <Link href={"/user/login"}>Login</Link> 
         </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer">
+        <DropdownMenuItem className="cursor-pointer" asChild>
           <Link href={"/user/signup"}>Sign Up</Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
