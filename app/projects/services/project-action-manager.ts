@@ -1,9 +1,10 @@
 import { createProject } from "../_actions/create-project";
+import { deleteProject } from "../_actions/delete-project";
 import { FormSchema } from "../_schemas/form-schema";
 
 type ProjectActionManagerSchema = {
   data: FormSchema;
-  action: "create" | "update";
+  action: "create" | "update"  ;
 };
 
 export async function projectActionManager({
@@ -19,4 +20,6 @@ export async function projectActionManager({
   if (action === "update") {
     return;
   }
+
+   
 }

@@ -1,7 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { DeleteProject } from "../_actions/delete-project";
+import { deleteProject } from "../_actions/delete-project";
+import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 export function DeleteProjectBtn({ id }: { id: string }) {
   async function handleDeleteProject(id: string) {
@@ -11,7 +13,14 @@ export function DeleteProjectBtn({ id }: { id: string }) {
 
     if (!confirmDelete) return;
 
-    await DeleteProject(id);
+    const result = await deleteProject(id);
+
+    if (result.success) {
+      toast.success("Projeto deletado com sucesso");
+      redirect("/");
+    }
+
+    toast.error(result.error);
   }
 
   return (
