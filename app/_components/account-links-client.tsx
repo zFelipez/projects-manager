@@ -37,7 +37,7 @@ export function AccountLinksClient({ session }: { session: any }) {
           <DropdownMenuItem className="cursor-pointer" asChild>
             <Button
               onClick={logout}
-              className="w-full bg-zinc-100 text-primary border-none hover:bg-transparent "
+              className="w-full bg-zinc-100 text-primary border-none hover:bg-transparent"
             >
               Logout
             </Button>
