@@ -66,7 +66,7 @@ export function Form({
   return (
     <form
       id="form-rhf-textarea"
-      className="flex flex-col gap-4 w-full"
+      className="p-4 flex flex-col gap-4 "
       onSubmit={form.handleSubmit(onSubmit)}
     >
       <FieldGroup>
