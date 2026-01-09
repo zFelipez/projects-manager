@@ -4,6 +4,8 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { DashboardHeader } from "./_components/dahsboard-header";
 import { AccountLinks } from "./_components/account-links";
+import { UserContextProvider } from "./contexts/userContext";
+import { getCurrentUser } from "@/lib/get-current-user";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,22 +22,26 @@ export const metadata: Metadata = {
   description: "Projects Manager",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getCurrentUser();
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <DashboardHeader title="Projects Manager">
-          <AccountLinks />
-        </DashboardHeader>
-        {children}
+        <UserContextProvider user={user}>
+          <DashboardHeader title="Projects Manager">
+            <AccountLinks />
+          </DashboardHeader>
+          {children}
 
-        <Toaster position="top-center" />
+          <Toaster position="top-center" />
+        </UserContextProvider>
       </body>
     </html>
   );
