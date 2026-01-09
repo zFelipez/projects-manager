@@ -20,14 +20,18 @@ export function AccountLinksClient({ session }: { session: any }) {
         <User className="text-white" size={20} />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>Conta</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer" asChild>
-          <Link href={"/user/login"}>Login</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer" asChild>
-          <Link href={"/user/signup"}>Sign Up</Link>
-        </DropdownMenuItem>
+        {!session && (
+          <>
+            <DropdownMenuLabel>Conta</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className="cursor-pointer" asChild>
+              <Link href={"/user/login"}>Login</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer" asChild>
+              <Link href={"/user/signup"}>Sign Up</Link>
+            </DropdownMenuItem>
+          </>
+        )}
 
         {session && (
           <DropdownMenuItem className="cursor-pointer" asChild>
