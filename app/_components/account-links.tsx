@@ -9,25 +9,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { User } from "lucide-react";
+import { EllipsisVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { logout } from "@/app/_actions/logout";
 import { useUser } from "@/app/contexts/userContext";
 
 export function AccountLinks() {
-
-  const session = useUser()
+  const session = useUser();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="p-2 hover:bg-secondary   rounded-sm hover:[&_svg]:text-primary cursor-pointer">
-        <User className="text-white" size={20} />
+        <EllipsisVertical className="text-white" size={20} />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <DropdownMenuLabel>Conta</DropdownMenuLabel>
+        <DropdownMenuSeparator />
         {!session && (
           <>
-            <DropdownMenuLabel>Conta</DropdownMenuLabel>
-            <DropdownMenuSeparator />
             <DropdownMenuItem className="cursor-pointer" asChild>
               <Link href={"/user/login"}>Login</Link>
             </DropdownMenuItem>
