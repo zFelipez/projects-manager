@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+ 
 
-## Getting Started
+# Projects Manager
 
-First, run the development server:
+Este é um projeto que desenvolvi **por iniciativa própria**, utilizando **Next.js (App Router)**, com o objetivo de **aprofundar meu conhecimento no framework** e em conceitos modernos de aplicações web full stack.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+O projeto consiste em um **gerenciador de projetos**, onde usuários podem se cadastrar, realizar login e gerenciar seus próprios projetos (criar, editar e excluir).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+##  Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* Autenticação de usuários (Signup e Login)
+* Criação, edição e exclusão de projetos
+* Associação de projetos a um usuário (1:N)
+* Controle de sessão utilizando **cookies**
+* Proteção de rotas com base na sessão do usuário
+* Interface moderna utilizando **shadcn/ui**
+* Validação e gerenciamento de formulários
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+##  Conceitos e Tecnologias Utilizadas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Next.js (App Router)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Utilização do **App Router**
+* Separação entre **Server Components** e **Client Components**
+* Navegação e rotas dinâmicas
 
-## Deploy on Vercel
+### Server Actions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Uso extensivo de **Server Actions** para:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  * Criar usuários
+  * Autenticar login
+  * Criar, editar e excluir projetos
+* Comunicação direta entre frontend e backend sem necessidade de APIs REST tradicionais
+
+### Autenticação e Sessão
+
+* Criação de um fluxo de autenticação **manual**, sem uso de bibliotecas prontas como NextAuth
+* Gerenciamento de sessão com **cookies**
+* Implementação de `getCurrentUser` para obter o usuário autenticado no servidor
+
+### Segurança e Arquitetura
+
+* Uso do conceito de **DAL (Data Access Layer)** para acesso ao banco de dados
+* Utilização da biblioteca **`server-only`** para garantir que dados sensíveis nunca sejam enviados ao client
+* Separação clara entre lógica de negócio e componentes de UI
+
+### Banco de Dados
+
+* **Prisma ORM**
+* PostgreSQL
+* Relacionamento **1:N (User → Projects)**
+* Uso de **Enums** no banco de dados para status do projeto
+* Migrations e versionamento do schema
+
+### Formulários e Validação
+
+* **React Hook Form** para gerenciamento de formulários
+* **Zod** para validação e tipagem dos dados
+* Schemas reutilizáveis para diferentes ações (login / signup)
+* Uso de `discriminatedUnion` para lidar com múltiplos fluxos em um único formulário
+
+---
+
+##  Estratégia de Desenvolvimento
+
+No início do projeto, utilizei **mocked data** (dados estáticos) para:
+
+* Estruturar a interface
+* Validar fluxos de navegação
+* Ter uma visão visual clara da aplicação
+
+Posteriormente, substituí os dados mockados por um banco de dados real, utilizando Prisma, o que facilitou a transição e organização do código.
+
+---
+
+##  Objetivo do Projeto
+
+Este projeto teve como principal objetivo:
+
+* Consolidar conhecimentos em **Next.js moderno**
+* Entender melhor a separação entre client e server
+* Aprender autenticação sem bibliotecas prontas
+* Praticar boas práticas de organização de código
+* Simular desafios reais de uma aplicação full stack
+
+---
+
+##  Próximos Passos (Possíveis Evoluções)
+
+* Projeto ainda em desenvolvimento porem maior parte da funcionalidades estao ja funcionando. 
+* Melhorar a proteção de rotas
+* Implementar roles de usuário
+* Criar filtros e buscas avançadas de projetos
+* Adicionar testes
+* Implementar logout automático por expiração de sessão
+
+---
+
+### Consideração Final
+
+Este projeto representa um passo importante na minha evolução como desenvolvedor, principalmente no entendimento de **aplicações full stack com Next.js**, **server actions** e **controle manual de autenticação**.
+ 
