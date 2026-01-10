@@ -19,8 +19,8 @@ export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-zinc-50 font-sans dark:bg-black p-8 pt-20">
      
-        {projects.length > 0 ? (
-           <div className="w-full flex-1 flex items-center justify-center flex-wrap gap-4">
+      {projects.length > 0 ? (
+        <div className="w-full flex-1 flex items-center justify-center flex-wrap gap-4">
           {projects.map((item) => {
             return (
               <ProjectCard
@@ -34,10 +34,9 @@ export default async function Home() {
             );
           })}
         </div>
-        ) : (
-         <Advice/>
-        )}
-      
+      ) : (
+        <Advice />
+      )}
     </div>
   );
 }

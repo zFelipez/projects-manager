@@ -13,11 +13,14 @@ import { EllipsisVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { logout } from "@/app/_actions/logout";
 import { useUser } from "@/app/contexts/userContext";
+ 
 
 export function AccountLinks() {
   const session = useUser();
 
   return (
+    <>
+   
     <DropdownMenu>
       <DropdownMenuTrigger className="p-2 hover:bg-secondary   rounded-sm hover:[&_svg]:text-primary cursor-pointer">
         <EllipsisVertical className="text-white" size={20} />
@@ -48,5 +51,6 @@ export function AccountLinks() {
         )}
       </DropdownMenuContent>
     </DropdownMenu>
+    </>
   );
 }

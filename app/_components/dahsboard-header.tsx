@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
- 
+
+import Particles from "@/components/Particles";
 
 interface DashboardMenuProps {
   title: string;
@@ -15,7 +16,9 @@ export function DashboardHeader({ title, children }: DashboardMenuProps) {
   console.log(path);
   return (
     <div className="flex items-center justify-between w-full bg-primary h-[50px]  p-4 absolute top-0 z-50">
-      <h1 className="text-2xl shadow-sm font-bold flex items-center justify-center rounded-sm text-white">
+      
+
+      <h1 className="  text-2xl shadow-sm font-bold flex items-center justify-center rounded-sm text-white">
         {title}
       </h1>
 
